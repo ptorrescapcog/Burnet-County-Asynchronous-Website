@@ -669,24 +669,7 @@ Your feedback will guide which projects should be prioritized, and help identify
       });
     }
 
-    // Load existing pins on page load
-    function loadPins(){
-      if (!isConfigured(PIN_API_URL)) return;
-      fetch(PIN_API_URL)
-        .then(function(res){ return res.json(); })
-        .then(function(pins){
-          pins.forEach(function(pin){
-            if (typeof pin.lat !== 'number' || typeof pin.lng !== 'number') return;
-            const marker = L.marker([pin.lat, pin.lng], { icon: pinIcon }).addTo(map);
-            marker.bindPopup(describePin(pin.description, pin.timestamp));
-          });
-        })
-        .catch(function(){
-          setStatus('Could not load saved pins — check your connection.', 'error');
-        });
-    }
-
-    loadPins();
+    
   })();
 </script>
 
